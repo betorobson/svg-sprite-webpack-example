@@ -1,13 +1,25 @@
 
+const template = document.createElement('div');
+
+template.innerHTML = `
+	<svg style="width: 100%; height: 100%">
+		<use
+			href="/icons.svg#{{name}}"
+		/>
+	</svg>
+`;
+
+const hrefTemplate = template.querySelector('use').getAttribute('href');
+
 class IconsSvgSprite extends HTMLElement {
 
-constructor() {
+	constructor() {
 
-     super();
+		super();
 
-		 this.injectHTML();
+		const shadowRoot = this.attachShadow({mode: 'open'});
 
-   }
+	}
 
   static get observedAttributes() {
     return ['name'];
@@ -18,13 +30,29 @@ constructor() {
   }
 
 	injectHTML() {
-		this.innerHTML = `
-			<svg style="width: 100%; height: 100%">
-				<use
-					href="/icons.svg#${this.attr('name')}"
-				/>
-			</svg>
-		`;
+
+		if(this.shadowRoot.querySelector('use')){
+
+			this.shadowRoot.querySelector('use').setAttribute(
+				'href',
+				hrefTemplate.replace(/\{\{name\}\}/, this.attr('name'))
+			);
+
+		}else{
+
+			let content = template.querySelector('svg').cloneNode(true);
+
+			console.log(this.attr('name'));
+
+			content.querySelector('use').setAttribute(
+				'href',
+				hrefTemplate.replace(/\{\{name\}\}/, this.attr('name'))
+			);
+
+			this.shadowRoot.appendChild(content);
+
+		}
+
 	}
 
 	attr(name) {
