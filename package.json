@@ -1,0 +1,19 @@
+{
+  "name": "svg-sprite-webpack-example",
+  "version": "1.0.0",
+  "description": "Example of how create svg sprite using webpack loaders",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/betorobson/svg-sprite-webpack-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/betorobson/svg-sprite-webpack-example/issues"
+  },
+  "homepage": "https://github.com/betorobson/svg-sprite-webpack-example#readme"
+}
