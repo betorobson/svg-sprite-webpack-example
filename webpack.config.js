@@ -8,10 +8,7 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const plugins = [
 
 	new HtmlWebpackPlugin({
-		// inject: false,
 		template: './src/index.html'
-		// config: config,
-		// packageJson: packageJson
 	}),
 
 	new SpriteLoaderPlugin({
@@ -47,24 +44,15 @@ const rules = [
 				options: {
 					extract: true,
 					spriteFilename: 'icons.svg',
-					// symbolId: filePath =>
-					// 	'icon-svg-'
-					// 	+ filePath.replace(/.*?[\\/]/g,'').replace(/^\d+-|.svg/g,'')
 				}
 			},
 			{
 				loader: 'svgo-loader',
 				options: {
 					plugins: [
-						// {
-						// 	removeStyleElement: false,
-						// },
 						{convertStyleToAttrs: false},
 						{mergePaths: true},
 						{inlineStyles: false},
-						// {
-						// 	cleanupAttrs: false
-						// },
 						{
 							removeAttrs: {
 								attrs: '(fill|stroke)'
@@ -80,7 +68,6 @@ const rules = [
 
 module.exports = {
 	mode: 'production',
-	// watch: envDevDebugging,
 	entry: {
 		main: path.resolve(__dirname, './src/index.js'),
 	},

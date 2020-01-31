@@ -1,23 +1,4 @@
 
-
-const template = document.createElement('template');
-
-  // <style>
-  //   :host {
-  //        display: block;
-  //   }
-  // </style>
-	// <img src="https://img.icons8.com/android/24/000000/download-2.png">
-
-template.innerHTML = `
-	<svg style="width: 100px; height: 100px">
-		<use
-			xlink:href="/icons.svg#car"
-			href="/icons.svg#car"
-		/>
-	</svg>
-`;
-
 class IconsSvgSprite extends HTMLElement {
 
 constructor() {
@@ -40,17 +21,17 @@ constructor() {
 
   // Only called for the disabled and open attributes due to observedAttributes
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log([name, oldValue, newValue])
+		this.injectHTML();
   }
 
 	injectHTML() {
-		 this.innerHTML = `
-			<svg style="width: 100px; height: 100px">
+		this.innerHTML = `
+			<svg style="width: 100%; height: 100%">
 				<use
 					href="/icons.svg#${this.attr('name')}"
 				/>
 			</svg>
-		 `;
+		`;
 	}
 
 	attr(name) {

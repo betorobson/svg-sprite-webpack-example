@@ -1,5 +1,15 @@
 
-import {svgSpriteName} from './svg-spite.webcomponent';
+import './svg-spite.webcomponent';
 
-console.log(svgSpriteName);
+const changeSvgIcon = (select, name) => {
+	select.parentNode.querySelector('icon-svg-sprite').setAttribute('name', name);
+};
+
+document.querySelectorAll('select').forEach(
+	item =>
+		item.addEventListener(
+			'change',
+			e => changeSvgIcon(item, item.value)
+		)
+);
 
