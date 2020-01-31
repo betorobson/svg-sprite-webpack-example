@@ -7,19 +7,12 @@ constructor() {
 
 		 this.injectHTML();
 
-    //  const shadowRoot = this.attachShadow({mode: 'open'});
-
-    //  let content = template.content.cloneNode(true);
-
-    //  this.shadowRoot.appendChild(content);
-
    }
 
   static get observedAttributes() {
     return ['name'];
   }
 
-  // Only called for the disabled and open attributes due to observedAttributes
   attributeChangedCallback(name, oldValue, newValue) {
 		this.injectHTML();
   }
@@ -49,10 +42,3 @@ let importAll = function(r){
 };
 
 importAll(require.context('../svg-icons/', true, /\.svg$/));
-
-
-const obj = {
-	name: 'svg-sprite'
-}
-
-export const {name: svgSpriteName} = obj;

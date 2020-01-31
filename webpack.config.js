@@ -1,7 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const watch = /watch/.test(process.env.npm_lifecycle_script);
+
 // plugins
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
@@ -66,8 +69,22 @@ const rules = [
 
 ];
 
+if(watch){
+	plugins.push(
+		new BrowserSyncPlugin({
+			// browser: browser,
+			single: true,
+			// host: config.url,
+			open: 'external',
+			port: 8080,
+			server: { baseDir: ['./dist/'] },
+		})
+	)
+}
+
 module.exports = {
 	mode: 'production',
+	watch: watch,
 	entry: {
 		main: path.resolve(__dirname, './src/index.js'),
 	},
